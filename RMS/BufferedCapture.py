@@ -151,7 +151,8 @@ class BufferedCapture(Process):
                         time.sleep(5)
 
                     if not ping_success:
-                        log.error("Can't ping the camera IP!")
+                        log.info("Can't ping the camera IP!")
+                        # investigate where camera is
                         return None
 
                 else:
@@ -212,6 +213,7 @@ class BufferedCapture(Process):
         # If the device could not be opened, stop capturing
         if not device_opened:
             log.info('The video source could not be opened!')
+            # check if ports are open
             self.exit.set()
             return False
 
